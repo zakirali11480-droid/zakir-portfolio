@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zakir Khan | Events Leadership Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1B2A;
+      --mid: #1B3A4B;
+      --teal: #1B998B;
+      --gold: #C9A84C;
+      --light: #F0F4F8;
+      --muted: #8899AA;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; line-height: 1.6; }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    ::selection { background: var(--teal); color: #fff; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 65px;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled { background: rgba(13,27,42,0.97); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(201,168,76,0.2); }
+    .nav-brand { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.1rem; font-weight: 700; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .burger { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+    .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; background: rgba(13,27,42,0.98); backdrop-filter: blur(12px); z-index: 99; padding: 1rem 2rem 2rem; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; padding: 0.85rem 0; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    .section-label { color: var(--teal); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 0.6rem; text-align: center; }
+    .section-title { font-size: clamp(1.9rem, 4vw, 2.7rem); text-align: center; margin-bottom: 1rem; }
+    .section-title.light { color: #fff; }
+    .divider { width: 55px; height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold)); border-radius: 2px; margin: 0 auto 3.5rem; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #0D1B2A 0%, #0D1B2A 55%, #1B3A4B 100%);
+      position: relative; overflow: hidden; padding: 7rem 2rem 4rem;
+    }
+    #hero::before { content:''; position:absolute; top:-120px; right:-120px; width:500px; height:500px; border-radius:50%; border:1px solid rgba(27,153,139,0.12); pointer-events:none; }
+    #hero::after  { content:''; position:absolute; bottom:-100px; left:-100px; width:400px; height:400px; border-radius:50%; border:1px solid rgba(201,168,76,0.08); pointer-events:none; }
+    .hero-inner { max-width: 860px; margin: 0 auto; text-align: center; position: relative; z-index:1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(27,153,139,0.12); border: 1px solid rgba(27,153,139,0.35);
+      border-radius: 50px; padding: 0.4rem 1.2rem; margin-bottom: 2rem;
+      color: var(--teal); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .hero-badge span { width:8px; height:8px; border-radius:50%; background:var(--teal); display:inline-block; }
+    .hero-name { font-size: clamp(2.8rem, 7vw, 5rem); color: #fff; margin-bottom: 0.5rem; }
+    .hero-role { font-size: clamp(1rem, 2.5vw, 1.35rem); color: var(--gold); font-style: italic; margin-bottom: 0.6rem; }
+    .hero-tag { font-size: 0.82rem; color: rgba(255,255,255,0.4); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 2.5rem; }
+    .hero-bio {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+      border-left: 4px solid var(--teal); border-radius: 14px;
+      padding: 1.75rem 2rem; text-align: left; margin-bottom: 2.5rem;
+    }
+    .hero-bio p { color: rgba(255,255,255,0.75); line-height: 1.85; font-size: 0.95rem; }
+    .hero-bio p + p { margin-top: 0.9rem; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--teal); color: #fff; padding: 0.85rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em; transition: background 0.2s; }
+    .btn-primary:hover { background: #2bbdad; }
+    .btn-outline { background: transparent; color: var(--gold); padding: 0.85rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.88rem; border: 1px solid var(--gold); transition: all 0.2s; }
+    .btn-outline:hover { background: var(--gold); color: var(--navy); }
+    .scroll-hint { margin-top: 3.5rem; color: rgba(255,255,255,0.25); font-size: 0.75rem; letter-spacing: 0.1em; }
+    .scroll-line { width:1px; height:45px; background: linear-gradient(to bottom, var(--teal), transparent); margin: 0 auto 0.4rem; }
+
+    /* ── LEADERSHIP ── */
+    #leadership { background: var(--navy); }
+    .theory-primary {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.22);
+      border-left: 5px solid var(--gold); border-radius: 18px; padding: 2.25rem; margin-bottom: 1.75rem;
+    }
+    .theory-primary h3 { color: var(--gold); font-size: 1.55rem; margin-bottom: 0.4rem; }
+    .theory-cite { color: rgba(255,255,255,0.4); font-size: 0.82rem; font-style: italic; margin-bottom: 1.2rem; }
+    .theory-primary p { color: rgba(255,255,255,0.75); line-height: 1.85; font-size: 0.94rem; }
+    .theory-primary p + p { margin-top: 0.85rem; }
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.1rem; margin-bottom: 1.75rem; }
+    .pillar {
+      background: rgba(27,153,139,0.08); border: 1px solid rgba(27,153,139,0.22);
+      border-top: 3px solid var(--teal); border-radius: 13px; padding: 1.4rem;
+    }
+    .pillar-num { color: var(--teal); font-size: 1.4rem; font-weight: 700; font-family: 'Playfair Display',serif; margin-bottom: 0.5rem; }
+    .pillar h4 { color: #fff; font-size: 0.98rem; margin-bottom: 0.5rem; font-family: 'Inter',sans-serif; font-weight: 600; }
+    .pillar p { color: rgba(255,255,255,0.58); font-size: 0.85rem; line-height: 1.7; }
+    .theories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
+    .theory-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 15px; padding: 1.75rem;
+    }
+    .theory-card.teal { border-left: 4px solid var(--teal); }
+    .theory-card.gold { border-left: 4px solid var(--gold); }
+    .theory-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .theory-card.teal h3 { color: var(--teal); }
+    .theory-card.gold h3 { color: var(--gold); }
+    .theory-card p { color: rgba(255,255,255,0.68); font-size: 0.9rem; line-height: 1.8; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--light); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px,1fr)); gap: 1.4rem; }
+    .skill-card {
+      background: #fff; border-radius: 15px; padding: 1.75rem;
+      box-shadow: 0 2px 18px rgba(13,27,42,0.06);
+      border-top: 4px solid var(--teal);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .skill-card:nth-child(even) { border-top-color: var(--gold); }
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(13,27,42,0.11); }
+    .skill-icon { font-size: 1.9rem; margin-bottom: 0.9rem; }
+    .skill-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .skill-card h3 { font-size: 1rem; color: var(--navy); font-family: 'Inter',sans-serif; font-weight: 600; flex: 1; }
+    .skill-tag { font-size: 0.7rem; font-weight: 700; padding: 0.22rem 0.75rem; border-radius: 50px; white-space: nowrap; }
+    .tag-core { background: rgba(27,153,139,0.1); color: var(--teal); border: 1px solid rgba(27,153,139,0.25); }
+    .tag-specialist { background: rgba(201,168,76,0.1); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
+    .tag-emerging { background: rgba(136,153,170,0.12); color: var(--muted); border: 1px solid rgba(136,153,170,0.25); }
+    .skill-card p { color: #5a6a7a; font-size: 0.88rem; line-height: 1.8; }
+
+    /* ── VALUES ── */
+    #values { background: var(--navy); }
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 1.4rem; margin-bottom: 3rem; }
+    .value-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 15px; padding: 1.75rem; position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .value-card:hover { border-color: rgba(27,153,139,0.45); transform: translateY(-3px); }
+    .value-num { position:absolute; top:-8px; right:14px; font-size:4.5rem; font-weight:700; color:rgba(255,255,255,0.03); font-family:'Playfair Display',serif; pointer-events:none; user-select:none; }
+    .value-icon { font-size: 1.9rem; margin-bottom: 0.9rem; }
+    .value-bar { width:28px; height:3px; border-radius:2px; margin-bottom:0.9rem; }
+    .value-card:nth-child(odd) .value-bar { background: var(--teal); }
+    .value-card:nth-child(even) .value-bar { background: var(--gold); }
+    .value-card h3 { color: #fff; font-size: 1.15rem; margin-bottom: 0.75rem; }
+    .value-card p { color: rgba(255,255,255,0.63); font-size: 0.88rem; line-height: 1.8; }
+    .values-quote {
+      background: rgba(27,153,139,0.09); border: 1px solid rgba(27,153,139,0.22);
+      border-left: 5px solid var(--teal); border-radius: 14px;
+      padding: 2rem 2.5rem; text-align: center;
+    }
+    .values-quote p { color: rgba(255,255,255,0.82); font-size: 1.05rem; font-style: italic; line-height: 1.8; font-family: 'Playfair Display',serif; }
+
+    /* ── ASPIRATION ── */
+    #aspiration { background: var(--light); }
+    .role-card {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--mid) 100%);
+      border-radius: 18px; padding: 2rem 2.25rem; margin-bottom: 2.25rem;
+      display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap;
+    }
+    .role-avatar { width:72px; height:72px; border-radius:50%; background:rgba(27,153,139,0.18); border:2px solid var(--teal); display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0; }
+    .role-label { color: var(--teal); font-size: 0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.35rem; }
+    .role-card h3 { color:#fff; font-size:1.5rem; margin-bottom:0.2rem; }
+    .role-org { color: var(--gold); font-style:italic; font-family:'Playfair Display',serif; font-size:1rem; }
+    .asp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 2rem; }
+    .asp-intro h3 { font-size: 1.1rem; color: var(--navy); padding-bottom: 0.7rem; border-bottom: 2px solid var(--teal); display: inline-block; margin-bottom: 1.2rem; }
+    .asp-intro p { color: #4a5a6a; font-size: 0.92rem; line-height: 1.85; margin-bottom: 0.9rem; }
+    .asp-fit h3 { font-size: 1.1rem; color: var(--navy); padding-bottom: 0.7rem; border-bottom: 2px solid var(--gold); display: inline-block; margin-bottom: 1.2rem; }
+    .fit-item {
+      background: #fff; border-radius: 11px; padding: 0.95rem 1.15rem;
+      display: flex; gap: 0.9rem; align-items: flex-start;
+      box-shadow: 0 2px 10px rgba(13,27,42,0.05);
+      border-left: 3px solid var(--teal); margin-bottom: 0.85rem;
+    }
+    .fit-num { color: var(--teal); font-weight:700; font-size:0.88rem; flex-shrink:0; margin-top:0.1rem; }
+    .fit-item p { color: #3a4a5a; font-size:0.88rem; line-height:1.7; margin:0; }
+
+    /* ── CV ── */
+    #cv { background: var(--navy); }
+    .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 2rem; }
+    .cv-card { background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:15px; padding:1.75rem; }
+    .cv-card-label { color: var(--gold); font-size:0.75rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1rem; display:block; }
+    .cv-profile-avatar { width:72px; height:72px; border-radius:50%; background:rgba(27,153,139,0.15); border:2px solid var(--teal); display:flex; align-items:center; justify-content:center; font-size:2rem; margin-bottom:1.1rem; }
+    .cv-card h3 { color:#fff; font-size:1.2rem; margin-bottom:0.25rem; }
+    .cv-card .sub { color:var(--gold); font-size:0.88rem; font-style:italic; margin-bottom:0.3rem; }
+    .cv-card .sid { color:rgba(255,255,255,0.4); font-size:0.8rem; }
+    .lang-item { display:flex; align-items:center; gap:0.7rem; margin-bottom:0.7rem; }
+    .lang-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .lang-item span { color:rgba(255,255,255,0.75); font-size:0.9rem; }
+    .skills-tags { display:flex; flex-wrap:wrap; gap:0.45rem; }
+    .skills-tags span { background:rgba(27,153,139,0.12); color:var(--teal); border:1px solid rgba(27,153,139,0.22); border-radius:50px; padding:0.25rem 0.8rem; font-size:0.75rem; font-weight:500; }
+    .edu-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:1.6rem; margin-bottom:1.25rem; }
+    .edu-card.teal { border-left:4px solid var(--teal); }
+    .edu-card.gold { border-left:4px solid var(--gold); }
+    .edu-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom:0.4rem; }
+    .edu-card h3 { color:#fff; font-size:1rem; font-family:'Inter',sans-serif; font-weight:600; flex:1; }
+    .edu-period { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.45); padding:0.2rem 0.65rem; border-radius:50px; font-size:0.75rem; white-space:nowrap; }
+    .edu-inst { font-size:0.85rem; margin-bottom:0.9rem; }
+    .edu-card.teal .edu-inst { color:var(--teal); }
+    .edu-card.gold .edu-inst { color:var(--gold); }
+    .edu-modules-label { color:rgba(255,255,255,0.35); font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.5rem; }
+    .module-tags { display:flex; flex-wrap:wrap; gap:0.4rem; }
+    .module-tags span { background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.62); border:1px solid rgba(255,255,255,0.09); border-radius:6px; padding:0.22rem 0.6rem; font-size:0.75rem; }
+
+    /* ── REFERENCES ── */
+    #references { background: var(--light); }
+    .ref-box { background:#fff; border-radius:15px; box-shadow:0 2px 18px rgba(13,27,42,0.06); overflow:hidden; }
+    .ref-header { background:var(--navy); padding:1.1rem 2rem; display:flex; justify-content:space-between; align-items:center; }
+    .ref-header span { color:var(--gold); font-weight:700; font-size:0.82rem; letter-spacing:0.08em; }
+    .ref-count { color:rgba(255,255,255,0.35); font-size:0.78rem; }
+    .ref-item { padding:1.1rem 2rem; display:flex; gap:1rem; align-items:flex-start; border-bottom:1px solid #e8edf2; }
+    .ref-item:last-child { border-bottom:none; }
+    .ref-n { color:var(--teal); font-weight:700; font-size:0.85rem; flex-shrink:0; margin-top:0.1rem; min-width:22px; }
+    .ref-item p { color:#3a4a5a; font-size:0.88rem; line-height:1.72; margin:0; }
+
+    /* ── FOOTER ── */
+    footer { background:#060e16; padding:2.5rem 2rem; text-align:center; }
+    .footer-line { width:55px; height:3px; background:linear-gradient(90deg,var(--teal),var(--gold)); border-radius:2px; margin:0 auto 1.25rem; }
+    footer p { color:rgba(255,255,255,0.55); font-size:0.92rem; font-family:'Playfair Display',serif; margin-bottom:0.4rem; }
+    footer small { color:rgba(255,255,255,0.25); font-size:0.78rem; display:block; margin-bottom:0.25rem; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .burger{display:block;}
+      section{padding:4rem 1.25rem;}
+      .hero-bio{padding:1.25rem 1.25rem;}
+      .role-card{flex-direction:column;}
+      .ref-header{flex-direction:column;gap:0.4rem;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-brand" href="#hero">Events Leadership</a>
+  <ul class="nav-links">
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#values">Values</a></li>
+    <li><a href="#aspiration">Aspiration</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+  <button class="burger" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#leadership" onclick="closeMenu()">Leadership</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#values" onclick="closeMenu()">Values</a>
+  <a href="#aspiration" onclick="closeMenu()">Aspiration</a>
+  <a href="#cv" onclick="closeMenu()">CV</a>
+  <a href="#references" onclick="closeMenu()">References</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span></span>AMAN5114 Events Leadership &nbsp;·&nbsp; Student ID: 2931090</div>
+    <h1 class="hero-name">Zakir Khan</h1>
+    <p class="hero-role">Aspiring Event Manager &nbsp;·&nbsp; Global Culture Organization</p>
+    <p class="hero-tag">Professional Identity &amp; Leadership Potential</p>
+    <div class="hero-bio">
+      <p>I am a postgraduate student completing my MSc in Culture and Event Management, building on a strong academic foundation in English Linguistics. My academic journey has equipped me with critical analytical thinking, cross-cultural communication, and strategic leadership capabilities that are essential for navigating the dynamic world of cultural events.</p>
+      <p>Driven by a passion for the arts, culture, and community engagement, I aspire to lead transformative international events that connect diverse audiences and celebrate human creativity. My studies across Marketing Principles, Events Leadership, Digital Entrepreneurship, and Culture, Festival &amp; Live Music Events have provided me with both the theoretical grounding and practical insight required to excel as a leader in the global cultural events sector.</p>
+    </div>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#leadership">Explore My Portfolio</a>
+      <a class="btn-outline" href="#cv">View CV</a>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      SCROLL
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="container">
+    <span class="section-label">Section 02</span>
+    <h2 class="section-title light">My Leadership Style</h2>
+    <div class="divider"></div>
+
+    <div class="theory-primary">
+      <h3>Transformational Leadership</h3>
+      <p class="theory-cite">Burns (1978); Bass (1985)</p>
+      <p>My primary leadership identity is rooted in Transformational Leadership theory, first conceptualised by Burns (1978) and later expanded by Bass (1985). This approach emphasises inspiring and motivating teams through a compelling shared vision, intellectual stimulation, and genuine personal connection — qualities that are especially vital within the creative and people-centred world of cultural events.</p>
+      <p style="margin-top:0.9rem;">As a transformational leader, I strive to elevate those around me by fostering creativity, building trust, and cultivating a shared sense of purpose. In an events context, this manifests in collaborative programming, empowering team members to take ownership of their roles, and maintaining a guest-centred vision at every stage of an event's lifecycle.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar"><div class="pillar-num">01</div><h4>Visionary</h4><p>Setting ambitious, culturally meaningful goals that inspire teams and stakeholders alike.</p></div>
+      <div class="pillar"><div class="pillar-num">02</div><h4>Inspirational</h4><p>Motivating through authentic storytelling and a clear sense of shared mission.</p></div>
+      <div class="pillar"><div class="pillar-num">03</div><h4>Intellectually Stimulating</h4><p>Encouraging creative problem-solving and innovation in event design and delivery.</p></div>
+      <div class="pillar"><div class="pillar-num">04</div><h4>Individually Considerate</h4><p>Recognising the unique strengths of each team member and nurturing their growth.</p></div>
+    </div>
+
+    <div class="theories-grid">
+      <div class="theory-card teal">
+        <h3>Servant Leadership</h3>
+        <p class="theory-cite" style="color:rgba(255,255,255,0.4);font-size:0.8rem;font-style:italic;margin-bottom:0.9rem;">Greenleaf (1977)</p>
+        <p>I am also shaped by Servant Leadership principles (Greenleaf, 1977), which place the needs of the team and the community at the heart of leadership practice. In the context of cultural events — which fundamentally exist to serve public audiences — this philosophy is deeply aligned with my professional values.</p>
+      </div>
+      <div class="theory-card gold">
+        <h3>Cultural Intelligence &amp; Hofstede's Framework</h3>
+        <p class="theory-cite" style="color:rgba(255,255,255,0.4);font-size:0.8rem;font-style:italic;margin-bottom:0.9rem;">Hofstede (1980); Northouse (2021)</p>
+        <p>Working across global cultural contexts demands a sophisticated awareness of cultural difference. Hofstede's (1980) dimensions of national culture — including power distance, individualism, and uncertainty avoidance — inform my approach to cross-cultural team management and international audience engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <span class="section-label">Section 03</span>
+    <h2 class="section-title">Transferable Skills</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon">📢</div>
+        <div class="skill-head">
+          <h3>Communication &amp; Storytelling</h3>
+          <span class="skill-tag tag-core">Core Competency</span>
+        </div>
+        <p>A bilingual academic background in English Linguistics has cultivated exceptional written, verbal, and intercultural communication capabilities. I am skilled in crafting compelling narratives — from event proposals and marketing copy to stakeholder reports — adapting tone and register for diverse audiences across professional and public contexts.</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🌍</div>
+        <div class="skill-head">
+          <h3>Cross-Cultural Awareness</h3>
+          <span class="skill-tag tag-specialist">Specialist Skill</span>
+        </div>
+        <p>My MSc module in Culture, Festival and Live Music Events has provided deep theoretical and applied understanding of how cultural context shapes audience expectations and programming decisions. Informed by Hofstede's (1980) cultural dimensions framework, I am equipped to design events that are sensitive, inclusive, and resonant across diverse communities.</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-head">
+          <h3>Strategic Planning &amp; Logistics</h3>
+          <span class="skill-tag tag-core">Core Competency</span>
+        </div>
+        <p>Through Marketing Principles and Events Leadership modules, I have developed robust competencies in event project management — including budget planning, stakeholder coordination, risk assessment, and programme scheduling. I understand how strategic planning frameworks translate into the practical demands of live event environments (Silvers, 2012).</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">💡</div>
+        <div class="skill-head">
+          <h3>Digital Innovation &amp; Entrepreneurship</h3>
+          <span class="skill-tag tag-emerging">Emerging Skill</span>
+        </div>
+        <p>The Digital Entrepreneur module has equipped me with modern tools for audience engagement, digital marketing strategy, and online community building. I am adept at leveraging social media platforms, content creation, and data-driven insights to amplify event visibility and cultivate engaged audiences in the digital landscape.</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🤝</div>
+        <div class="skill-head">
+          <h3>Stakeholder &amp; Partnership Management</h3>
+          <span class="skill-tag tag-core">Core Competency</span>
+        </div>
+        <p>I have developed strong interpersonal skills for negotiating and sustaining productive relationships with a diverse range of stakeholders — including sponsors, venues, artists, local authorities, and community organisations. Building trust and maintaining transparent communication are central to my approach to partnership development.</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🎯</div>
+        <div class="skill-head">
+          <h3>Team Leadership &amp; Collaboration</h3>
+          <span class="skill-tag tag-core">Core Competency</span>
+        </div>
+        <p>I bring a collaborative, motivating approach to team leadership, drawing on transformational principles (Bass, 1985) to create environments where colleagues feel empowered and valued. My academic experience of coordinating multi-disciplinary group projects has reinforced my ability to manage diverse teams effectively and maintain momentum toward shared goals.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="container">
+    <span class="section-label">Section 04</span>
+    <h2 class="section-title light">Professional Values</h2>
+    <div class="divider"></div>
+    <div class="values-grid">
+
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <div class="value-icon">🌐</div>
+        <div class="value-bar"></div>
+        <h3>Inclusivity</h3>
+        <p>I am committed to creating events that genuinely welcome, represent, and celebrate all communities. Drawing on Hofstede's (1980) cultural dimensions theory, I design experiences that are sensitive to cultural diversity and accessible to all audiences, regardless of background or identity.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <div class="value-icon">✨</div>
+        <div class="value-bar"></div>
+        <h3>Creativity</h3>
+        <p>I believe that cultural events have the power to transform communities and spark new perspectives. I bring creative vision to every stage of the event management process — from conceptualisation and programming through to audience experience design.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <div class="value-icon">🔒</div>
+        <div class="value-bar"></div>
+        <h3>Integrity</h3>
+        <p>Transparent, honest, and ethical leadership underpins every professional relationship I cultivate. I hold myself to the highest standards of professional conduct in all interactions with colleagues, partners, and the communities I serve.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-num">04</div>
+        <div class="value-icon">🌱</div>
+        <div class="value-bar"></div>
+        <h3>Sustainability</h3>
+        <p>As a responsible event professional, I am committed to championing environmentally and socially sustainable practices — minimising ecological impact, supporting local economies, and leaving a positive legacy in the communities that host our events.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-num">05</div>
+        <div class="value-icon">⭐</div>
+        <div class="value-bar"></div>
+        <h3>Excellence</h3>
+        <p>I am driven to deliver the highest quality event experiences — experiences that resonate deeply with audiences, exceed stakeholder expectations, and leave a lasting cultural impact. Excellence, for me, is both a professional standard and a personal commitment.</p>
+      </div>
+
+    </div>
+    <div class="values-quote">
+      <p>"My values are not simply ideals I aspire to — they are the principles that actively guide every professional decision I make, every relationship I build, and every event I help to create."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ASPIRATION -->
+<section id="aspiration">
+  <div class="container">
+    <span class="section-label">Section 05</span>
+    <h2 class="section-title">My Career Aspiration</h2>
+    <div class="divider"></div>
+
+    <div class="role-card">
+      <div class="role-avatar">🌍</div>
+      <div>
+        <p class="role-label">Target Role</p>
+        <h3>Event Manager</h3>
+        <p class="role-org">Global Culture Organization</p>
+      </div>
+    </div>
+
+    <div class="asp-grid">
+      <div class="asp-intro">
+        <h3>Career Vision</h3>
+        <p>My career aspiration is to secure a leadership role as an Event Manager within a Global Culture Organization — an international body operating at the intersection of the arts, cultural heritage, live music, and community engagement. Such organisations require leaders who can navigate complex cross-cultural environments, manage large-scale international events, and advocate for the transformative power of culture.</p>
+        <p>My dual academic qualification — a BSc in English Linguistics combined with an MSc in Culture and Event Management — positions me as a uniquely equipped candidate for this sector. The analytical rigour of my linguistics training, paired with the strategic and creative competencies developed through my postgraduate studies, enables me to approach cultural event leadership with both intellectual depth and practical expertise.</p>
+        <p>I am drawn specifically to organisations that champion cultural diversity, foster international artistic exchange, and use events as vehicles for social connection and community development. My transformational leadership style (Burns, 1978; Bass, 1985), grounded commitment to inclusivity (Hofstede, 1980), and passion for delivering exceptional cultural experiences make me well-suited to contribute meaningfully to such organisations.</p>
+      </div>
+      <div class="asp-fit">
+        <h3>Why I Am the Right Fit</h3>
+        <div class="fit-item"><span class="fit-num">01</span><p>MSc in Culture &amp; Event Management provides direct alignment with global cultural programming strategy.</p></div>
+        <div class="fit-item"><span class="fit-num">02</span><p>English Linguistics background ensures exceptional cross-cultural communication with international teams and diverse audiences.</p></div>
+        <div class="fit-item"><span class="fit-num">03</span><p>Digital Entrepreneur module equips me with contemporary tools for audience development and digital engagement.</p></div>
+        <div class="fit-item"><span class="fit-num">04</span><p>Transformational leadership style aligns with the collaborative, mission-driven cultures of global cultural organisations.</p></div>
+        <div class="fit-item"><span class="fit-num">05</span><p>Deep commitment to inclusivity and sustainability resonates with the social responsibility mandates of global culture bodies.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+  <div class="container">
+    <span class="section-label">Section 06</span>
+    <h2 class="section-title light">Curriculum Vitae</h2>
+    <div class="divider"></div>
+
+    <div class="cv-grid">
+      <!-- Left -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+        <div class="cv-card" style="border-top:4px solid var(--gold);">
+          <div class="cv-profile-avatar">👤</div>
+          <h3>Zakir Khan</h3>
+          <p class="sub">Aspiring Event Manager</p>
+          <p class="sid">Student ID: 2931090</p>
+        </div>
+        <div class="cv-card">
+          <span class="cv-card-label">Languages</span>
+          <div class="lang-item"><div class="lang-dot" style="background:var(--teal);"></div><span>English (Fluent)</span></div>
+          <div class="lang-item"><div class="lang-dot" style="background:var(--gold);"></div><span>Urdu (Native)</span></div>
+        </div>
+        <div class="cv-card">
+          <span class="cv-card-label">Key Skills</span>
+          <div class="skills-tags">
+            <span>Event project management</span>
+            <span>Cross-cultural communication</span>
+            <span>Digital marketing</span>
+            <span>Stakeholder management</span>
+            <span>Strategic planning</span>
+            <span>Creative concept development</span>
+            <span>Team leadership</span>
+            <span>Harvard referencing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div>
+        <span class="cv-card-label" style="display:block;margin-bottom:1.25rem;">Education</span>
+        <div class="edu-card teal">
+          <div class="edu-top">
+            <h3>MSc Culture and Event Management</h3>
+            <span class="edu-period">2024 – 2025</span>
+          </div>
+          <p class="edu-inst">UK University</p>
+          <p class="edu-modules-label">Relevant Modules</p>
+          <div class="module-tags">
+            <span>Events Leadership (AMAN5114)</span>
+            <span>Marketing Principles</span>
+            <span>Digital Entrepreneur</span>
+            <span>Culture, Festival &amp; Live Music Events</span>
+          </div>
+        </div>
+        <div class="edu-card gold">
+          <div class="edu-top">
+            <h3>BSc (Hons) English Linguistics</h3>
+            <span class="edu-period">2021 – 2024</span>
+          </div>
+          <p class="edu-inst">UK University</p>
+          <p class="edu-modules-label">Relevant Modules</p>
+          <div class="module-tags">
+            <span>Academic Writing &amp; Research</span>
+            <span>Intercultural Communication</span>
+            <span>Discourse Analysis</span>
+            <span>Applied Linguistics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references">
+  <div class="container" style="max-width:860px;">
+    <span class="section-label">Section 07</span>
+    <h2 class="section-title">Reference List</h2>
+    <div class="divider"></div>
+    <div class="ref-box">
+      <div class="ref-header">
+        <span>HARVARD REFERENCING CONVENTION</span>
+        <span class="ref-count">7 sources</span>
+      </div>
+      <div class="ref-item"><span class="ref-n">1.</span><p>Bass, B.M. (1985) <em>Leadership and Performance Beyond Expectations.</em> New York: Free Press.</p></div>
+      <div class="ref-item"><span class="ref-n">2.</span><p>Burns, J.M. (1978) <em>Leadership.</em> New York: Harper &amp; Row.</p></div>
+      <div class="ref-item"><span class="ref-n">3.</span><p>Getz, D. (2012) <em>Event Studies: Theory, Research and Policy for Planned Events.</em> 2nd edn. Oxford: Butterworth-Heinemann.</p></div>
+      <div class="ref-item"><span class="ref-n">4.</span><p>Greenleaf, R.K. (1977) <em>Servant Leadership: A Journey into the Nature of Legitimate Power and Greatness.</em> New York: Paulist Press.</p></div>
+      <div class="ref-item"><span class="ref-n">5.</span><p>Hofstede, G. (1980) <em>Culture's Consequences: International Differences in Work-Related Values.</em> Beverly Hills: Sage.</p></div>
+      <div class="ref-item"><span class="ref-n">6.</span><p>Northouse, P.G. (2021) <em>Leadership: Theory and Practice.</em> 9th edn. London: SAGE Publications.</p></div>
+      <div class="ref-item"><span class="ref-n">7.</span><p>Silvers, J.R. (2012) <em>Professional Event Coordination.</em> 2nd edn. New Jersey: Wiley.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-line"></div>
+  <p>Zakir Khan</p>
+  <small>Student ID: 2931090 &nbsp;·&nbsp; AMAN5114 Events Leadership &nbsp;·&nbsp; MSc Culture and Event Management</small>
+  <small>Assessment 2 – Digital Portfolio &nbsp;·&nbsp; 40% Module Weighting</small>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
